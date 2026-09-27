@@ -12,6 +12,7 @@ date-released: 2026-09-26
 authors:
   - family-names: Marchini
     given-names: Davide
+    orcid: "https://orcid.org/0009-0004-7808-2162"
 abstract: >-
   Lean 4 formalization of the first-moment-constrained Rayleigh problem on
   the half-line, including the explicit compactly supported optimizer,
