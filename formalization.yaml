@@ -1,0 +1,117 @@
+# Schema: https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/v0.4.schema.json
+version: "v0.4"
+
+project:
+  name: rayleigh_kernel
+  description: >-
+    Lean 4 formalization of the first-moment-constrained Rayleigh problem on
+    the half-line, including the main optimizer theorem, discrete convergence,
+    finite-cutoff probability extensions, and certified numerical corollaries.
+  authors:
+    - Davide Marchini
+  license: MIT
+
+sources:
+  - title: A First-Moment-Constrained Rayleigh Problem on the Half-Line
+    authors:
+      - Davide Marchini
+    id: manuscript/main.tex
+    type: article
+    location: manuscript/main.tex
+    relationship: formalizes
+
+automation:
+  methods:
+    - method: agent
+      models:
+        - gpt-5.6-sol
+      tool_setup: >-
+        gpt-5.6-sol, on high reasoning effort.
+  notes: >-
+    The Lean 4 formalization accompanying the manuscript and the proofs given
+    there were produced with help from gpt-5.6-sol on high reasoning effort. The
+    author verified all the results reported and takes full responsibility for
+    the content.
+
+review:
+  status: self-assessed
+  reviewers:
+    - Davide Marchini
+  notes: >-
+    Self-assessed and author-reviewed for this release metadata. No independent
+    peer review is claimed.
+
+status:
+  scope: >-
+    The formalization covers the main half-line optimizer and sharp inequality,
+    exact symbolic and certified numerical corollaries, discrete interpolation,
+    recovery, and discrete minimum/near-minimizer convergence. Probability
+    results retain their stated finite-cutoff, finite-row, covariance-form, and
+    profilewise qualifications. Difference-projection density/continuity characterization is formalized in
+    `RayleighKernel.Probability.DifferenceProjection`; full Gamma-convergence is
+    not included in this release.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+  main_results:
+    - declaration: RayleighKernel.Analysis.HalfLineH1.mainOptimizerTheorem
+      file: RayleighKernel/MainTheorem.lean
+      sorry_count: 0
+      axioms:
+        - propext
+        - Classical.choice
+        - Quot.sound
+      description: >-
+        MainOptimizerData: existence, exact optimizer characterization,
+        uniqueness, support/profile identities, minimum, sharp inequality, and
+        equality cases.
+    - declaration: RayleighKernel.Discrete.tendsto_scaledDiscreteMinimum
+      file: RayleighKernel/Discrete/Convergence.lean
+      sorry_count: 0
+      axioms:
+        - propext
+        - Classical.choice
+        - Quot.sound
+      description: >-
+        Convergence of the scaled discrete minimum to the continuum minimum as
+        the mesh tends to zero through positive values.
+    - declaration: RayleighKernel.Discrete.tendsto_scaled_rayleighQuotient_of_nearMinimizer
+      file: RayleighKernel/Discrete/Convergence.lean
+      sorry_count: 0
+      axioms:
+        - propext
+        - Classical.choice
+        - Quot.sound
+      description: >-
+        Convergence of admissible near-minimizer scaled Rayleigh quotients to
+        the continuum minimum under the stated mesh and error hypotheses.
+
+fidelity:
+  divergences: >-
+    The discrete convergence statements use filter convergence of positive mesh
+    values and finite triangular rows rather than an implicit monotone mesh or
+    an infinite-series claim. Probability statements are finite-cutoff or
+    profilewise where recorded in the declarations. Difference-projection density/continuity characterization is formalized;
+    Full Gamma-convergence is not included in this release.
+
+alignment:
+  index: RayleighKernel.Claims
+  notes: >-
+    Manuscript labels thm:main, prop:existence, thm:discrete-continuum,
+    lem:discrete-recovery, and lem:discrete-limsup are mapped to the exact
+    declarations indexed by RayleighKernel.Claims. MainOptimizerData is the
+    aggregate optimizer certificate. Certified numerical enclosures are
+    separate declarations in RayleighKernel.Numerics and are not folded into
+    MainOptimizerData. P1.9 is represented by
+    RayleighKernel.Probability.IsFiniteZeroSum,
+    RayleighKernel.Probability.dense_finiteZeroSum,
+    RayleighKernel.Probability.DifferenceProjectionIsotropicWhite,
+    RayleighKernel.Probability.DifferenceProjectionIsotropicWhite.projection_integral_abs_of_difference,
+    and RayleighKernel.Probability.turnoverIsotropicWhite_of_difference_projection.
+    Full Gamma-convergence is not included in this release.
+
+acknowledgements: >-
+  Formalized in Lean 4 using the Lean 4 theorem prover and mathlib.

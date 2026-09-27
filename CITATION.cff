@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "A First-Moment-Constrained Rayleigh Problem on the Half-Line"
+message: >-
+  If you use this formalization or its accompanying manuscript, please cite it.
+  The Lean 4 formalization and the proofs in the accompanying manuscript were
+  produced with help from gpt-5.6-sol on high reasoning effort. The author
+  verified all the results reported and takes full responsibility for the
+  content.
+type: software
+version: 1.0.0
+date-released: 2026-09-26
+authors:
+  - family-names: Marchini
+    given-names: Davide
+abstract: >-
+  Lean 4 formalization of the first-moment-constrained Rayleigh problem on
+  the half-line, including the explicit compactly supported optimizer,
+  discrete convergence results, qualified probability extensions, and
+  certified numerical bounds.
+license: MIT
+repository-code: "https://github.com/marchinidavide/rayleigh_kernel"
+url: "https://github.com/marchinidavide/rayleigh_kernel"
+keywords:
+  - Lean 4
+  - formalization
+  - mathlib
+  - variational analysis
+  - Rayleigh quotient
